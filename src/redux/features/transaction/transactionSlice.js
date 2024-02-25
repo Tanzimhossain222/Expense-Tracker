@@ -5,7 +5,8 @@ const initialSatate = {
     transactions: [],
     isLoading: false,
     error: null,
-    isError: false
+    isError: false,
+    editing: null
 }
 
 export const fetchTransactions = createAsyncThunk('transaction/fetchTransactions', async () => {
@@ -33,6 +34,14 @@ export const changeTransaction = createAsyncThunk('transaction/changeTransaction
 const transactionSlice = createSlice({
     name: 'transaction',
     initialState: initialSatate,
+    reducers: {
+        editActive: (state, action) => {
+            state.editing = action.payload;
+        },
+        editInactive: (state) => {
+            state.editing = null;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchTransactions.pending, (state) => {
             state.isLoading = true;
@@ -75,7 +84,8 @@ const transactionSlice = createSlice({
         builder.addCase(removeTransaction.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isError = false;
-            state.transactions = state.transactions.filter(transaction => transaction.id !== action.payload.id);
+            console.log(action);
+            state.transactions = state.transactions.filter(transaction => transaction.id !== action.meta.arg);
         })
 
         builder.addCase(removeTransaction.rejected, (state, action) => {
@@ -103,6 +113,8 @@ const transactionSlice = createSlice({
 
     }
 })
+
+export const { editActive, editInactive } = transactionSlice.actions;
 
 export default transactionSlice.reducer;
 

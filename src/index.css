@@ -26,6 +26,12 @@
     display: flex;
 }
 
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
 .container {
     width: 90%;
     max-width: 1024px;
@@ -163,7 +169,6 @@ label {
 }
 
 .cancel_edit {
-    display: none;
     margin-top: 10px;
     background-color: #e6425e !important;
 }
