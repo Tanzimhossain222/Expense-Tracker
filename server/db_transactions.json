@@ -11,12 +11,6 @@
       "type": "income",
       "amount": 1600,
       "id": 2
-    },
-    {
-      "name": "game",
-      "type": "expense",
-      "amount": 13999,
-      "id": 3
     }
   ]
 }
