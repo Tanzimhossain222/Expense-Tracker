@@ -6,6 +6,7 @@ import {
   editActive,
   removeTransaction,
 } from "../../../redux/features/transaction/transactionSlice";
+import numberWithCommas from "../../../utils/numberWithCommas";
 
 const Transaction = ({ transaction }) => {
   const { id, name, type, amount } = transaction || {};
@@ -24,7 +25,7 @@ const Transaction = ({ transaction }) => {
       <li className={`transaction ${type}`}>
         <p>{name}</p>
         <div className="right">
-          <p>৳ {amount}</p>
+          <p>৳ {numberWithCommas(amount)}</p>
           <button className="link" onClick={handleEdit}>
             <img className="icon" src={editImage} alt="edit" />
           </button>
